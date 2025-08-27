@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -7,30 +8,31 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Yummy | Template</title>
+   
 
-    <!-- Google Font -->
+
+    
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+ 
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 </head>
 
 <body>
-    <!-- Page Preloder -->
+    
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
-    <!-- Header Section Begin -->
+   
     <header class="header-section-other">
         <div class="container-fluid">
             <div class="logo">
-                <a href="./index.html"><img src="img/little-logo.png" alt=""></a>
+                <a href="./index.html"><img width="60px" src="{% static 'img/little-logo.png' %}" alt=""></a>
             </div>
             <div class="nav-menu">
                 <nav class="main-menu mobile-menu">
@@ -57,10 +59,9 @@
             <div id="mobile-menu-wrap"></div>
         </div>
     </header>
-    <!-- Header End -->
 
-    <!-- Hero Search Section Begin -->
-    <div class="hero-search set-bg" data-setbg="img/search-bg.jpg">
+
+    <div class="hero-search set-bg" data-setbg="{% static 'img/search-bg.jpg' %}">
         <div class="container">
             <div class="filter-table">
                 <form action="#" class="filter-search">
@@ -76,127 +77,26 @@
             </div>
         </div>
     </div>
-    <!-- Hero Search Section End -->
-
-    <!-- Recipe Section Begin -->
+    
+    
     <section class="recipe-section spad">
         <div class="container">
             <div class="row">
+                {% for c in categories %}
                 <div class="col-lg-4 col-sm-6">
                     <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-1.jpg" alt=""></a>
+                        <a href="#"><img src="{{c.image.url}}" alt=""></a>
                         <div class="ri-text">
-                            <div class="cat-name">Desert</div>
+                            <div class="cat-name">{{c.name}}</div>
                             <a href="#">
-                                <h4>One Pot Weeknight Soup</h4>
+                                <h4>{{c.name}}</h4>
                             </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
+                            <p>{{c.descriptions}}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-2.jpg" alt=""></a>
-                        <div class="ri-text">
-                            <div class="cat-name">Desert</div>
-                            <a href="#">
-                                <h4>Blueberries cake</h4>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-3.jpg" alt=""></a>
-                        <div class="ri-text">
-                            <div class="cat-name">Desert</div>
-                            <a href="#">
-                                <h4>Pork Steak with Onion</h4>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-4.jpg" alt=""></a>
-                        <div class="ri-text">
-                            <div class="cat-name">Desert</div>
-                            <a href="#">
-                                <h4>Pizza with salami</h4>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-5.jpg" alt=""></a>
-                        <div class="ri-text">
-                            <div class="cat-name">Desert</div>
-                            <a href="#">
-                                <h4>Pumpkin Chilli Soup</h4>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-6.jpg" alt=""></a>
-                        <div class="ri-text">
-                            <div class="cat-name">Desert</div>
-                            <a href="#">
-                                <h4>Salmon with veggies</h4>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-7.jpg" alt=""></a>
-                        <div class="ri-text">
-                            <div class="cat-name">Desert</div>
-                            <a href="#">
-                                <h4>Strawberry Chessecake</h4>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-8.jpg" alt=""></a>
-                        <div class="ri-text">
-                            <div class="cat-name">Desert</div>
-                            <a href="#">
-                                <h4>Key Lime Pie</h4>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-9.jpg" alt=""></a>
-                        <div class="ri-text">
-                            <div class="cat-name">Desert</div>
-                            <a href="#">
-                                <h4>Pizza with cheesse</h4>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-                        </div>
+                {% endfor %}
+                
                     </div>
                 </div>
             </div>
@@ -213,9 +113,7 @@
             </div>
         </div>
     </section>
-    <!-- Recipe Section End -->
-
-    <!-- Categories Feature Recipe Section Begin -->
+   
     <section class="categories-feature-recipe spad">
         <div class="section-title">
             <h5>Featured Recipes</h5>
@@ -226,34 +124,22 @@
             </div>
             <div class="row">
                 <div class="col-lg-7">
+                    {% for c in categories %}
                     <div class="cfr-item">
-                        <div class="cfr-item-img set-bg" data-setbg="img/cat-feature/big-1.jpg">
+                        <div class="cfr-item-img set-bg" data-setbg="{{c.image.url}}">
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="cfr-item-text">
-                            <div class="cat-name">Vegan</div>
+                            <div class="cat-name">{{c.name}}</div>
                             <a href="#">
-                                <h4>One Pot Weeknight Lasagna Soup Recipe</h4>
+                                <h4>{{c.name}}</h4>
                             </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua.</p>
+                            <p>{{c.descriptions}}</p>
                         </div>
                     </div>
+                    {% endfor %}
                     <div class="cfr-item">
-                        <div class="cfr-item-img set-bg" data-setbg="img/cat-feature/big-2.jpg">
-                            <i class="fa fa-plus"></i>
-                        </div>
-                        <div class="cfr-item-text">
-                            <div class="cat-name">Meat Lover</div>
-                            <a href="#">
-                                <h4>Veggie soup with Mushrooms</h4>
-                            </a>
-                            <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                aliqua. Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                    <div class="cfr-item">
-                        <div class="cfr-item-img set-bg" data-setbg="img/cat-feature/big-3.jpg">
+                        <div class="cfr-item-img set-bg" data-setbg="{% static 'img/cat-feature/big-3.jpg' %}">
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="cfr-item-text">
@@ -266,7 +152,7 @@
                         </div>
                     </div>
                     <div class="cfr-item">
-                        <div class="cfr-item-img set-bg" data-setbg="img/cat-feature/big-4.jpg">
+                        <div class="cfr-item-img set-bg" data-setbg="{% static 'img/cat-feature/big-4.jpg' %}">
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="cfr-item-text">
@@ -281,49 +167,49 @@
                 </div>
                 <div class="col-lg-4 offset-lg-1">
                     <div class="cfr-small-item">
-                        <a href="#"><img src="img/cat-feature/small-1.jpg" alt=""></a>
+                        <a href="#"><img src="{% static 'img/cat-feature/small-1.jpg' %}" alt=""></a>
                         <div class="cfr-small-text">
                             <div class="cat-name">Vegan</div>
                             <h6>One Pot Weeknight Lasagna Soup Recipe</h6>
                         </div>
                     </div>
                     <div class="cfr-small-item">
-                        <a href="#"><img src="img/cat-feature/small-2.jpg" alt=""></a>
+                        <a href="#"><img src="{% static 'img/cat-feature/small-2.jpg' %}" alt=""></a>
                         <div class="cfr-small-text">
                             <div class="cat-name">Vegan</div>
                             <h6>Lava Cake with a Tone of Chocolate</h6>
                         </div>
                     </div>
                     <div class="cfr-small-item">
-                        <a href="#"><img src="img/cat-feature/small-3.jpg" alt=""></a>
+                        <a href="#"><img src="{% static 'img/cat-feature/small-3.jpg' %}" alt=""></a>
                         <div class="cfr-small-text">
                             <div class="cat-name">Vegan</div>
                             <h6>One Pot Weeknight Lasagna Soup Recipe</h6>
                         </div>
                     </div>
                     <div class="cfr-small-item">
-                        <a href="#"><img src="img/cat-feature/small-4.jpg" alt=""></a>
+                        <a href="#"><img src="{% static 'img/cat-feature/small-4.jpg' %}" alt=""></a>
                         <div class="cfr-small-text">
                             <div class="cat-name">Vegan</div>
                             <h6>Smoked Salmon mini Sandwiches with Onion</h6>
                         </div>
                     </div>
                     <div class="cfr-small-item">
-                        <a href="#"><img src="img/cat-feature/small-5.jpg" alt=""></a>
+                        <a href="#"><img src="{% static 'img/cat-feature/small-5.jpg' %}" alt=""></a>
                         <div class="cfr-small-text">
                             <div class="cat-name">Vegan</div>
                             <h6>Asparagus with Pork Loin and Vegetables</h6>
                         </div>
                     </div>
                     <div class="cfr-small-item">
-                        <a href="#"><img src="img/cat-feature/small-6.jpg" alt=""></a>
+                        <a href="#"><img src="{% static 'img/cat-feature/small-6.jpg' %}" alt=""></a>
                         <div class="cfr-small-text">
                             <div class="cat-name">Vegan</div>
                             <h6>Dry Cookies with Corn</h6>
                         </div>
                     </div>
                     <div class="cfr-small-item">
-                        <a href="#"><img src="img/cat-feature/small-7.jpg" alt=""></a>
+                        <a href="#"><img src="{% static 'img/cat-feature/small-7.jpg' %}" alt=""></a>
                         <div class="cfr-small-text">
                             <div class="cat-name">Vegan</div>
                             <h6>Italian Tiramisu with Coffe</h6>
@@ -333,17 +219,14 @@
             </div>
         </div>
     </section>
-    <!-- Categories Feature Recipe Section End -->
-
-    <!-- Footer Section Begin -->
-    <footer class="footer-section">
+   <footer class="footer-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">
                     <div class="fs-left">
                         <div class="logo">
                             <a href="./index.html">
-                                <img src="img/footer-logo.png" alt="">
+                                <img src="{% static 'img/footer-logo.png' %}" alt="">
                             </a>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -369,17 +252,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="copyright-text">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- Footer Section End -->
-
-    <!-- Search model -->
+   
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
 			<div class="search-close-switch">+</div>
@@ -388,15 +267,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</form>
 		</div>
 	</div>
-	<!-- Search model end -->
-
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/main.js"></script>
+	</footer>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/mixitup.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>
