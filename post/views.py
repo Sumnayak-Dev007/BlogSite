@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404
 from .models import Category,Catblog
 from django.contrib import messages
 from .forms import PostForm
@@ -35,19 +36,20 @@ def categories(request):
 
 
 def catView(request,slug):
-    if(Category.objects.filter(slug=slug)):
-        cat = Category.objects.filter(slug=slug,status=0)
+    category = get_object_or_404(Category, slug=slug, status=0)
+    posts = Catblog.objects.filter(category=category)
 
-    else:
-        messages.error(request, "Something went wrong. Please try again.")
-        return redirect('categories')
+    # else:
+    #     messages.error(request, "Something went wrong. Please try again.")
+    #     return redirect('categories')
 
     context = {
-        'cat':cat
+        'cat':category,
+        'posts' : posts
     }
 
     return render(request,'catview.html',context)
     
 
-def blog_view(request,c_slug,b_slug):
+def blog_view(request,cat_slug, post_slug):
     return render(request,'blog.html')
