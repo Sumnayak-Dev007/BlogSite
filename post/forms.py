@@ -1,5 +1,5 @@
 from django import forms
-from .models import Catblog
+from .models import Catblog, Comment
 
 
 class PostForm(forms.ModelForm):
@@ -36,3 +36,22 @@ class PostForm(forms.ModelForm):
 
 
         }
+
+
+class CommentForm(forms.ModelForm):
+    content = forms.CharField(
+        label="",
+        widget=forms.Textarea(attrs={
+            'rows': 3,
+            'placeholder': '💬 Share your thoughts...',
+            'class': (
+                'w-full px-4 py-3 rounded-lg '
+                'bg-gray-800 text-gray-100 border border-gray-700 '
+                'focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 '
+                'placeholder-gray-400 resize-none'
+            )
+        })
+    )
+    class Meta:
+        model = Comment
+        fields = ['content']

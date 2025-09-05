@@ -46,9 +46,22 @@ class Catblog(models.Model):
     meta_keywords=models.CharField(max_length=150,null=False,blank=False)
     created_at=models.DateTimeField(auto_now_add=True)
 
+
+    def cmt_count(self):
+        return self.comment_set.all().count()
+
     class Meta:
         ordering = ('-created_at',)
 
 
     def __str__(self):
         return str(self.title)
+
+
+class Comment(models.Model):
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    post = models.ForeignKey(Catblog,on_delete=models.CASCADE)
+    content = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.content

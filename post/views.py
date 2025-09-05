@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.shortcuts import get_object_or_404
 from .models import Category,Catblog
 from django.contrib import messages
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 # Create your views here.
 def index(request):
     cat = Catblog.objects.all()
@@ -52,4 +52,38 @@ def catView(request,slug):
     
 
 def blog_view(request,cat_slug, post_slug):
-    return render(request,'blog.html')
+    if(Category.objects.filter(slug=cat_slug)):
+        if(Catblog.objects.filter(slug=post_slug)):
+            post = Catblog.objects.filter(slug=post_slug).first()
+        else:
+            messages.error(request, "Something went wrong. Please try again.")
+            return redirect('catView')
+    else:
+        messages.error(request, "Something went wrong. Please try again.")
+        return redirect('catView')
+
+    if request.method == "POST":
+        # if not request.user.is_authenticated:
+        #     messages.warning(request, "Please log in to send a message.")
+        #     login_url = f"{redirect('new_login').url}?{urlencode({'next': request.path})}"  # Preserve return URL
+        #     return redirect(login_url)
+        
+        c_form = CommentForm(request.POST)
+        if c_form.is_valid():
+            instance = c_form.save(commit=False)
+            instance.author = request.user
+            instance.post = post
+            instance.save()
+            return redirect('blog_view',cat_slug=cat_slug,post_slug=post_slug)
+    else:
+        c_form = CommentForm()
+
+
+    context={
+        'post':post,
+        'c_form':c_form
+    }
+
+    
+
+    return render(request,'blog.html',context)
