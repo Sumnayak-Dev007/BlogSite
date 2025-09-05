@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404
 from .models import Category,Catblog
 from django.contrib import messages
 from .forms import PostForm, CommentForm
+
+
 # Create your views here.
 def index(request):
     cat = Catblog.objects.all()
@@ -10,13 +12,13 @@ def index(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            # IMPORTANT: match your actual field name
-            post.author = request.user           # if your model uses "author"
-            # post.auther = request.user         # if you accidentally named it "auther"
+            post.author = request.user
             post.save()
-            form.save_m2m()  # only needed if you have M2M fields (e.g., tags)
+            form.save_m2m()
             messages.success(request, "Post created successfully!")
-            return redirect("/")  # redirect after saving
+            return redirect("/")
+        else:
+            messages.error(request, "Please correct the errors below.")
     else:
         form = PostForm()
 
@@ -24,7 +26,7 @@ def index(request):
         "cat": cat,
         "form": form
     }
-    return render(request,'index.html',context)
+    return render(request, 'index.html', context)
 
 
 def categories(request):
@@ -87,3 +89,33 @@ def blog_view(request,cat_slug, post_slug):
     
 
     return render(request,'blog.html',context)
+
+
+def edit_view(request,pk):
+    post = get_object_or_404(Catblog, id=pk)
+    if request.method == "POST":
+        p_form = PostForm(request.POST,request.FILES,instance=post)
+        if p_form.is_valid():
+            instance = p_form.save(commit=False)
+            instance.author = request.user
+            instance.save()
+            p_form.save_m2m()
+            messages.success(request,"Yayy! Post edited successfully !")
+            return redirect("blog_view",cat_slug=post.category.slug,post_slug=post.slug)
+    else:
+        p_form = PostForm(instance=post)
+
+    return render(request,'post_edit.html',{'post':post,'p_form':p_form})
+
+def del_view(request,pk):
+    post = get_object_or_404(Catblog,id=pk)
+    if request.method == "POST":
+        post.delete()
+        messages.success(request,"Yayy!Post Deleted Successfully !")
+        return redirect("blog_view",cat_slug=post.category.slug,post_slug=post.slug)
+    
+    
+    return render(request,'del_view.html',{'post':post})
+
+
+
