@@ -4,175 +4,161 @@
 {% block content %}
     
     <!-- Hero Search Section Begin -->
-    <div class="hero-search set-bg" data-setbg="img/search-bg.jpg">
-        <div class="container">
-            <div class="filter-table">
-                <form action="#" class="filter-search">
-                    <input type="text" placeholder="Search recipe">
-                    <select id="category">
-                        <option value="">Category</option>
-                    </select>
-                    <select id="tag">
-                        <option value="">Tags</option>
-                    </select>
-                    <button type="submit">Search</button>
-                </form>
-            </div>
+<!-- Hero Search Section -->
+<div class="bg-gray-900 py-8">
+  <div class="container mx-auto px-4">
+    <form action="#" class="flex flex-wrap gap-4 justify-center">
+      <input type="text" placeholder="Search recipe"
+             class="flex-1 min-w-[200px] px-4 py-2 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+      <select id="category"
+              class="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        <option value="">Category</option>
+      </select>
+      <select id="tag"
+              class="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        <option value="">Tags</option>
+      </select>
+      <button type="submit"
+              class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg shadow transition">
+        Search
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Blog Section -->
+<section class="py-12 bg-gray-900 text-gray-100">
+  <!-- Blog Image -->
+  <div class="container-fluid mb-6">
+    <img src="{% static 'img/blog-img.jpg' %}" alt="Blog Image"
+         class="w-full h-[400px] object-cover rounded-lg shadow-lg">
+  </div>
+
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="blog-title mb-6">
+        <span class="text-sm text-gray-400">16 January 2019</span>
+        <h2 class="text-3xl font-bold mt-2">5 Tips for a Perfect Steak</h2>
+        <ul class="flex gap-3 text-indigo-400 mt-2">
+          <li class="bg-gray-800 px-3 py-1 rounded-full text-sm">Desert</li>
+          <li class="bg-gray-800 px-3 py-1 rounded-full text-sm">Asian</li>
+          <li class="bg-gray-800 px-3 py-1 rounded-full text-sm">Spicy</li>
+        </ul>
+      </div>
+
+      <div class="space-y-6 leading-relaxed text-gray-300">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...</p>
+        <p>Donec sit amet enim tortor. Sed egestas nulla nibh, vitae porta velit sagittis eget...</p>
+        <p>Pellentesque tempor lectus nisi, ut consectetur mauris feugiat et. Nam lacinia placerat...</p>
+
+        <!-- Blog Quote -->
+        <div class="border-l-4 border-indigo-500 pl-4 italic text-gray-400">
+          <i class="fa fa-quote-left text-indigo-500 mr-2"></i>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
+      </div>
+
+      <!-- Comments -->
+      <div class="mt-10">
+        <h3 class="text-xl font-bold mb-4">Comments (3)</h3>
+        <div class="single-comment flex gap-4 p-4 bg-gray-800 rounded-lg mb-4">
+          <img src="{% static 'img/blog-comment.png' %}" alt="User"
+               class="w-14 h-14 rounded-full">
+          <div>
+            <ul class="flex gap-4 text-sm text-gray-400 mb-1">
+              <li class="font-semibold text-white">Maria Smith</li>
+              <li>March 29, 2019</li>
+              <li><a href="#" class="text-indigo-400 hover:underline">Reply</a></li>
+            </ul>
+            <p class="text-gray-300 text-sm">Amet magna in nunc malesuada ornare quis sed libero...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comment Form -->
+      <form action="#" class="mt-8 space-y-4">
+        <h3 class="text-xl font-bold">Leave a Comment</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <input type="text" placeholder="Your name"
+                 class="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          <input type="text" placeholder="Your email"
+                 class="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        </div>
+        <textarea placeholder="Comment"
+                  class="w-full px-4 py-2 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
+        <button type="submit"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg shadow">
+          Post
+        </button>
+      </form>
     </div>
-    <!-- Hero Search Section End -->
+  </div>
+</section>
 
-    <!-- Blog Section Begin -->
-    <section class="blog-section spad">
-        <div class="blog-pic">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <img src="img/blog-img.jpg" alt="">
-                    </div>
-                </div>
-            </div>
+<!-- Similar Recipes -->
+<section class="similar-recipe py-12 bg-gray-800 text-gray-100">
+  <div class="container mx-auto px-4">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="similar-item bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+        <a href="#"><img src="{% static 'img/cat-feature/small-7.jpg' %}" alt="" class="w-full h-40 object-cover"></a>
+        <div class="p-4">
+          <div class="cat-name text-indigo-400 text-sm">Vegan</div>
+          <h6 class="font-semibold">Italian Tiramisu with Coffee</h6>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="blog-text">
-                        <div class="blog-title">
-                            <span>16 January 2019</span>
-                            <h2>5 Tips for e Perfect Steak</h2>
-                            <ul class="tags">
-                                <li>Desert</li>
-                                <li>Asian</li>
-                                <li>Spicy</li>
-                            </ul>
-                        </div>
-                        <div class="blog-desc">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet. Donec in sodales dui, a
-                                blandit nunc. Pellentesque id eros venenatis, sollicitudin neque sodales, vehicula nibh.
-                                Nam massa odio, porttitor vitae efficitur non, ultricies volutpat tellus. Cras egestas
-                                in lacus a finibus. Suspendisse sed urna at elit condimentum viverra. Suspendisse non
-                                lobortis nisi. Maecenas accumsan quam quis porta laoreet. Aliquam felis odio, aliquet
-                                fermentum semper at, porttitor ac mi. Duis vel condimentum risus. Phasellus eu dolor vel
-                                neque commodo accumsan eget et enim. Pellentesque non elit sed risus tincidunt aliquam
-                                eu eget metus.</p>
-                            <p>Donec sit amet enim tortor. Sed egestas nulla nibh, vitae porta velit sagittis eget.
-                                Donec vitae tellus semper, cursus sem id, iaculis purus. Aenean ligula risus, maximus
-                                tristique eros vel, auctor ornare tortor. Aliquam vel augue sapien. Duis non auctor
-                                ante, ac vestibulum tortor. Etiam quis dolor ultricies, dignissim ante a, ornare ipsum.
-                                Phasellus suscipit rhoncus nulla, quis bibendum tortor elementum ac. Nullam viverra
-                                tellus diam, nec accumsan orci aliquam sed. Sed placerat sagittis lacus, non rutrum diam
-                                volutpat id.</p>
-                            <p>Pellentesque tempor lectus nisi, ut consectetur mauris feugiat et. Nam lacinia placerat
-                                sem nec consequat. Praesent tempus eros vitae iaculis sollicitudin. Nulla facilisi.
-                                Aenean sit amet magna in nunc malesuada ornare quis sed libero. Aenean ornare rutrum
-                                vestibulum. Morbi a mi vel nunc bibendum viverra sed ut dui. Proin accumsan, neque quis
-                                fringilla bibendum, lectus neque interdum odio, quis blandit metus nibh sit amet nibh.
-                                Vivamus lobortis libero non tellus imperdiet fringilla. Sed quis enim id odio blandit
-                                maximus ut a mi. Aenean enim ante, rutrum id cursus ac, facilisis at sapien. Vestibulum
-                                facilisis quam sit amet leo elementum, eu tincidunt nibh blandit. Nam sit amet faucibus
-                                nunc, a venenatis dolor. Nulla tempus ornare massa vitae malesuada. Curabitur ultricies
-                                faucibus ipsum id imperdiet. Donec in dolor ex.</p>
-                            <div class="blog-quote">
-                                <i class="fa fa-quote-left"></i>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                    gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-                            </div>
-                        </div>
-                        <div class="blog-comment">
-                            <h3>Comments (3)</h3>
-                            <div class="single-comment">
-                                <img src="img/blog-comment.png" alt="">
-                                <ul>
-                                    <li>Maria Smith</li>
-                                    <li>March 29, 2019</li>
-                                    <li>Reply</li>
-                                </ul>
-                                <p>amet magna in nunc malesuada ornare quis sed libero. Aenean ornare rutrum vestibulum.
-                                    Morbi a mi vel nunc bibendum viverra sed ut dui. Proin accumsan, neque quis
-                                    fringilla bibendum, lectus neque interdum odio, quis blandit metus nibh sit amet
-                                    nibh. Vivamus lobortis libero non tellus imperdiet fringilla. Sed quis enim id odio
-                                    blandit maximus ut a mi. Aenean enim ante, rutrum id cursus ac, facilisis at sapien.
-                                    Vestibulum facilisis quam sit amet leo elementum.</p>
-                            </div>
-                        </div>
-                        <form action="#" class="comment-form">
-                            <h3>Leave a Comment</h3>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Your name">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Your email">
-                                </div>
-                                <div class="col-lg-12">
-                                    <textarea placeholder="Comment"></textarea>
-                                </div>
-                            </div>
-                            <button type="submit">Post</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="similar-item bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+        <a href="#"><img src="{% static 'img/cat-feature/small-6.jpg' %}" alt="" class="w-full h-40 object-cover"></a>
+        <div class="p-4">
+          <div class="cat-name text-indigo-400 text-sm">Vegan</div>
+          <h6 class="font-semibold">Dry Cookies with Corn</h6>
         </div>
-    </section>
-    <!-- Blog Section End -->
-
-    <!-- Similar Recipe Section Begin -->
-    <section class="similar-recipe spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="similar-item">
-                        <a href="#"><img src="img/cat-feature/small-7.jpg" alt=""></a>
-                        <div class="similar-text">
-                            <div class="cat-name">Vegan</div>
-                            <h6>Italian Tiramisu with Coffe</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="similar-item">
-                        <a href="#"><img src="img/cat-feature/small-6.jpg" alt=""></a>
-                        <div class="similar-text">
-                            <div class="cat-name">Vegan</div>
-                            <h6>Dry Cookies with Corn</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="similar-item">
-                        <a href="#"><img src="img/cat-feature/small-5.jpg" alt=""></a>
-                        <div class="similar-text">
-                            <div class="cat-name">Vegan</div>
-                            <h6>Asparagus with Pork Loin and Vegetables</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="similar-item">
-                        <a href="#"><img src="img/cat-feature/small-4.jpg" alt=""></a>
-                        <div class="similar-text">
-                            <div class="cat-name">Vegan</div>
-                            <h6>Smoked Salmon mini Sandwiches with Onion</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="similar-item bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+        <a href="#"><img src="{% static 'img/cat-feature/small-5.jpg' %}" alt="" class="w-full h-40 object-cover"></a>
+        <div class="p-4">
+          <div class="cat-name text-indigo-400 text-sm">Vegan</div>
+          <h6 class="font-semibold">Asparagus with Pork Loin</h6>
         </div>
-    </section>
-    <!-- Similar Recipe Section End -->
-
-    <!-- Search model -->
-	<div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
+      </div>
+      <div class="similar-item bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+        <a href="#"><img src="{% static 'img/cat-feature/small-4.jpg' %}" alt="" class="w-full h-40 object-cover"></a>
+        <div class="p-4">
+          <div class="cat-name text-indigo-400 text-sm">Vegan</div>
+          <h6 class="font-semibold">Smoked Salmon mini Sandwiches</h6>
         </div>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- Search Modal -->
+<div class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50" id="search-modal">
+  <div class="relative w-full max-w-md bg-gray-900 rounded-xl shadow-lg p-6">
+    <!-- Close -->
+    <button id="close-search" class="absolute top-2 right-3 text-3xl text-gray-400 hover:text-white">&times;</button>
+    <!-- Search Input -->
+    <form>
+      <input type="text" id="search-input"
+             placeholder="Search here....."
+             class="w-full px-4 py-3 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </form>
+  </div>
+</div>
+
+<script>
+  // Modal logic
+  const searchModal = document.getElementById("search-modal");
+  const closeSearch = document.getElementById("close-search");
+
+  document.querySelectorAll("[data-open-search]").forEach(btn => {
+    btn.addEventListener("click", () => searchModal.classList.remove("hidden", "opacity-0"));
+  });
+
+  closeSearch.addEventListener("click", () => {
+    searchModal.classList.add("hidden");
+  });
+</script>
+
     <!-- Search model end -->
     
  {% endblock %}

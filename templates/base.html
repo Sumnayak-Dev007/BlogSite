@@ -13,14 +13,20 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
     {% block extra_css %}{% endblock %}
 </head>
-<body>
+<body class="flex flex-col min-h-screen bg-gray-900">
     <!-- Navbar -->
     <!-- Page Preloder -->
     <div id="preloder">
@@ -28,36 +34,98 @@
     </div>
 
    
-    <header class="header-section-other">
-        <div class="container-fluid">
-            <div class="logo">
-                <a href="./index.html"><img width="60px" src="{% static 'img/little-logo.png' %}" alt=""></a>
-            </div>
-            <div class="nav-menu">
-                <nav class="main-menu mobile-menu">
-                    <ul>
-                        <li class="active"><a href="{% url 'home' %}">Home</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="sub-menu">
-                                <li><a href="about-me.html">About Me</a></li>
-                                <li><a href="categories.html">Categories</a></li>
-                                <li><a href="recipe.html">Recipe</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{% url 'categories' %}">Categories</a></li>
-                        <li><a href="categories.html">Best Of</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-                <div class="nav-right search-switch">
-                    <i class="fa fa-search"></i>
-                </div>
-            </div>
-            <div id="mobile-menu-wrap"></div>
+
+<nav class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      
+      <!-- Brand -->
+      <a href="/" class="flex items-center space-x-2">
+        <img src="{% static 'img/brain.svg' %}" alt="Logo" class="w-10 h-10">
+        <span class="font-semibold text-lg">Navbar</span>
+      </a>
+
+      <!-- Mobile menu button -->
+      <button id="mobileMenuBtn" class="sm:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <!-- Desktop Menu -->
+      <div class="hidden sm:flex sm:items-center sm:space-x-6">
+        <a href="/" class="hover:text-blue-400">Home</a>
+        <a href="{% url 'categories' %}" class="hover:text-blue-400">Category</a>
+
+        <!-- Dropdown -->
+        <div class="relative">
+          <button id="dropdownBtn" class="rounded-lg flex items-center hover:text-blue-400">
+            Dashboard
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div id="dropdownMenu"
+               class="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-lg shadow-lg hidden">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-900 bg-gray-800 text-white">Action</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-900 bg-gray-800 text-white">Another action</a>
+        
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-900 bg-gray-800 text-white">Something else here</a>
+          </div>
         </div>
-    </header>
+
+        <a class="text-gray-400 cursor-not-allowed">Disabled</a>
+      </div>
+
+      <!-- Search (desktop only) -->
+      <form class="hidden sm:flex items-center space-x-2">
+        <input type="search" placeholder="Search"
+               class="px-3 py-1 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500">
+        <button class="px-4 py-1 bg-blue-500 rounded-lg hover:bg-blue-600">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Mobile Menu (hidden by default) -->
+  <div id="mobileMenu" class="sm:hidden hidden px-4 pb-4 space-y-3">
+    <a href="/" class="block hover:text-blue-400">Home</a>
+    <a href="{% url 'categories' %}" class="block hover:text-blue-400">Category</a>
+
+    <!-- Mobile Dropdown -->
+    <div class="relative">
+      <button id="mobileDropdownBtn" class="rounded-lg flex items-center w-full hover:text-blue-400">
+        Dashboard
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div id="mobileDropdownMenu"
+           class="mt-2 w-full bg-white text-gray-800 rounded-lg shadow-lg hidden">
+        <a href="#" class="block px-4 py-2 hover:bg-gray-900 bg-gray-800 text-white ">Action</a>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-900 bg-gray-800 text-white">Another action</a>
+      
+        <a href="#" class="block px-4 py-2 hover:bg-gray-900 bg-gray-800 text-white">Something else here</a>
+      </div>
+    </div>
+
+    <a class="text-gray-400 cursor-not-allowed block">Disabled</a>
+
+    <!-- Mobile Search -->
+    <form class="flex items-center space-x-2">
+      <input type="search" placeholder="Search"
+             class="px-3 py-1 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500 w-full">
+      <button class="px-4 py-1 bg-blue-500 rounded-lg hover:bg-blue-600">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+
+
+
     <!-- Header End -->
 
     <!-- Messages -->
@@ -79,56 +147,71 @@
   
 
     <!-- Footer -->
-     <footer class="footer-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="fs-left">
-                        <div class="logo">
-                            <a href="./index.html">
-                                <img src="{% static 'img/footer-logo.png' %}" alt="">
-                            </a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                            viverra maecenas accumsan lacus vel facilisis.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 offset-lg-1">
-                    <form action="#" class="subscribe-form">
-                        <h3>Subscribe to our newsletter</h3>
-                        <input type="email" placeholder="Your e-mail">
-                        <button type="submit">Subscribe</button>
-                    </form>
-                    <div class="social-links">
-                        <a href="#"><i class="fa fa-instagram"></i><span>Instagram</span></a>
-                        <a href="#"><i class="fa fa-pinterest"></i><span>Pinterest</span></a>
-                        <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
-                        <a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>
-                        <a href="#"><i class="fa fa-youtube"></i><span>Youtube</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="copyright-text">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="{% 'https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <!-- Main content -->
+  <main class="flex-grow">
+    <!-- your page content here -->
+  </main>
 
-    <!-- Bootstrap JS -->
-    <!-- Js Plugins -->
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
-    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
-    <script src="{% static 'js/mixitup.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-8 mt-auto">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-center md:justify-start md:space-x-12 mb-6">
+        <!-- Social Links -->
+        <div class="flex space-x-6">
+          <a href="#" class="flex items-center space-x-2 hover:text-pink-500 transition">
+            <i class="fab fa-instagram"></i><span class="hidden sm:inline">Instagram</span>
+          </a>
+          <a href="#" class="flex items-center space-x-2 hover:text-red-500 transition">
+            <i class="fab fa-pinterest"></i><span class="hidden sm:inline">Pinterest</span>
+          </a>
+          <a href="#" class="flex items-center space-x-2 hover:text-blue-600 transition">
+            <i class="fab fa-facebook"></i><span class="hidden sm:inline">Facebook</span>
+          </a>
+          <a href="#" class="flex items-center space-x-2 hover:text-gray-400 transition">
+            <i class="fab fa-x-twitter"></i><span class="hidden sm:inline">Twitter</span>
+          </a>
+          <a href="#" class="flex items-center space-x-2 hover:text-red-600 transition">
+            <i class="fab fa-youtube"></i><span class="hidden sm:inline">Youtube</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-center text-gray-400 text-sm">
+        © <script>document.write(new Date().getFullYear());</script> All rights reserved ||
+        This website is made with 
+        <i class="fa-solid fa-heart text-red-500"></i> 
+        by 
+        <a href="https://x.com/SumanNayak__" target="_blank" class="hover:text-blue-400 font-semibold">
+          SumanNayak
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+<script>
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById("mobileMenuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  mobileBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Desktop dropdown
+  const dropdownBtn = document.getElementById("dropdownBtn");
+  const dropdownMenu = document.getElementById("dropdownMenu");
+  dropdownBtn.addEventListener("click", () => {
+    dropdownMenu.classList.toggle("hidden");
+  });
+
+  // Mobile dropdown
+  const mobileDropdownBtn = document.getElementById("mobileDropdownBtn");
+  const mobileDropdownMenu = document.getElementById("mobileDropdownMenu");
+  mobileDropdownBtn.addEventListener("click", () => {
+    mobileDropdownMenu.classList.toggle("hidden");
+  });
+</script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
