@@ -11,7 +11,9 @@
 
     <!-- Post Image -->
     {% if post.blog_image %}
-    <img src="{{ post.blog_image.url }}" alt="{{ post.title }}" class="w-full h-72 object-cover">
+    <div class="w-full max-h-96 overflow-hidden flex justify-center items-center">
+    <img src="{{ post.blog_image.url }}" alt="{{ post.title }}" class="w-[800px] h-96">
+    </div>
     {% endif %}
 
     <!-- Post Content -->

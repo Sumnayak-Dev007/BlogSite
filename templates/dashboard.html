@@ -5,7 +5,7 @@
     
 
 <section class="py-10 bg-gray-900 text-gray-100">
-  <div class="max-w-3xl mx-auto px-4"> <!-- Reduced width from 6xl to 3xl -->
+  <div class="max-w-2xl mx-auto px-4"> <!-- Reduced width from 6xl to 3xl -->
     
     <!-- Profile Header -->
     <div class="bg-gray-800 rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-center md:items-start md:space-x-6 relative">
@@ -22,9 +22,9 @@
 
       <!-- Edit Button (only if logged in user owns this profile) -->
       {% if request.user == profile.author %}
-      <div class="absolute top-4 right-4">
+      <div class="absolute top-4 right-2">
         <a href="{% url 'profile_edit' %}" 
-           class="px-4 py-2 text-sm font-medium bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow transition">
+           class="px-2 py-1 text-sm font-medium bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow transition">
           Edit Profile
         </a>
       </div>
