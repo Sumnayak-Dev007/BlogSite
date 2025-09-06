@@ -212,6 +212,24 @@
     mobileDropdownMenu.classList.toggle("hidden");
   });
 </script>
+
+<script>
+  function openModal() { document.getElementById('exampleModal').classList.remove('hidden'); }
+  function closeModal() { document.getElementById('exampleModal').classList.add('hidden'); }
+
+  // Fade-in on scroll
+  document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+  });
+</script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
