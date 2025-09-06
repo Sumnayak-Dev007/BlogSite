@@ -42,7 +42,7 @@
       <!-- Brand -->
       <a href="/" class="flex items-center space-x-2">
         <img src="{% static 'img/brain.svg' %}" alt="Logo" class="w-10 h-10">
-        <span class="font-semibold text-lg">Navbar</span>
+        <span class="font-semibold text-lg"></span>
       </a>
 
       <!-- Mobile menu button -->
@@ -76,7 +76,10 @@
           </div>
         </div>
 
-        <a class="text-gray-400 cursor-not-allowed">Disabled</a>
+        <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="hover:text-blue-400">Logout</button>
+      </form>
       </div>
 
       <!-- Search (desktop only) -->
@@ -110,8 +113,11 @@
         <a href="#" class="block px-4 py-2 hover:bg-gray-900 bg-gray-800 text-white">Something else here</a>
       </div>
     </div>
-
-    <a class="text-gray-400 cursor-not-allowed block">Disabled</a>
+      <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="hover:text-blue-400">Logout</button>
+        </form>
+   
 
     <!-- Mobile Search -->
     <form class="flex items-center space-x-2">
