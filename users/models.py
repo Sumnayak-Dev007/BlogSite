@@ -15,9 +15,9 @@ def get_pic_path(request,filename):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    author = models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile")
     pic = models.ImageField(default='default.png',upload_to=get_pic_path,validators=[FileExtensionValidator(['png','jpg','jpeg','webp'])])
     bio = models.TextField(blank=True,null=True)
 
     def __str__(self):
-        return self.user.username
+        return self.author.username
