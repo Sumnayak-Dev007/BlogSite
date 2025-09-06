@@ -59,10 +59,10 @@ def blog_view(request,cat_slug, post_slug):
             post = Catblog.objects.filter(slug=post_slug).first()
         else:
             messages.error(request, "Something went wrong. Please try again.")
-            return redirect('catView')
+            return redirect('catView',slug=cat_slug)
     else:
         messages.error(request, "Something went wrong. Please try again.")
-        return redirect('catView')
+        return redirect('catView',slug=cat_slug)
 
     if request.method == "POST":
         # if not request.user.is_authenticated:

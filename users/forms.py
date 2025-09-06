@@ -43,3 +43,29 @@ class SignUpForm(UserCreationForm):
             
             }),
         }
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ["pic", "bio"]
+        widgets = {
+            "bio": forms.Textarea(attrs={
+                "class": "w-full px-4 py-3 rounded-lg bg-gray-800 text-gray-100 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none",
+                "placeholder": "Write a short bio...",
+                "rows": 5,
+            }),
+            "pic": forms.FileInput(attrs={
+                "class": "w-full text-sm file:bg-gray-700 file:text-gray-100 file:px-3 file:py-2 file:rounded file:border-0 file:cursor-pointer file:focus:outline-none",
+                "id": "picUpload",
+            }),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for fieldname in ['bio', 'pic']:
+            self.fields[fieldname].help_text = None
+
+
+        
+
