@@ -35,7 +35,7 @@
       </div>
     </div>
     {% empty %}
-      <p class="text-gray-400">No blogs yet.</p>
+      <p class="text-gray-400">No results found for "{{ request.GET.q }}"</p>
     {% endfor %}
   </div>
 </div>

@@ -3,11 +3,21 @@ from django.shortcuts import get_object_or_404
 from .models import Category,Catblog
 from django.contrib import messages
 from .forms import PostForm, CommentForm
+from django.db.models import Q
 
 
 # Create your views here.
 def index(request):
+    query = request.GET.get("q")  # search query
     cat = Catblog.objects.all()
+
+    if query:
+        cat = cat.filter(
+            Q(meta_keywords__icontains=query) |
+            Q(slug__icontains=query) |
+            Q(title__icontains=query)  # optional if you want to include title
+        )
+
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():

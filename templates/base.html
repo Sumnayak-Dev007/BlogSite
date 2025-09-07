@@ -84,8 +84,9 @@
       </div>
 
       <!-- Search (desktop only) -->
-      <form class="hidden sm:flex items-center space-x-2">
-        <input type="search" placeholder="Search"
+      <form class="hidden sm:flex items-center space-x-2" action="{% url 'home' %}">
+        <input type="search" name="q" placeholder="Search"
+                value="{{ request.GET.q }}"
                class="px-3 py-1 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500">
         <button class="px-4 py-1 bg-blue-500 rounded-lg hover:bg-blue-600">Search</button>
       </form>
