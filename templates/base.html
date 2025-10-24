@@ -61,11 +61,10 @@
         <!-- Brand -->
         <a href="/" class="flex items-center ">
           <img src="{% static 'img/brain.svg' %}" alt="Logo" class="w-10 h-10">
-          
         </a>
 
         <!-- Mobile search bar -->
-        <form class="flex items-center justify-center   sm:hidden" action="{% url 'home' %}">
+        <form class="flex items-center justify-center sm:hidden" action="{% url 'home' %}">
           <input type="search" name="q" placeholder="Search"
                  value="{{ request.GET.q }}"
                  class="w-[150px] px-3 py-1.5 ml-2 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500">
@@ -83,7 +82,6 @@
 
       <!-- Desktop layout -->
       <div class="hidden sm:flex flex-1 items-center justify-between">
-        <!-- Logo placeholder (kept empty to maintain spacing with flex-1) -->
         <div></div>
 
         <!-- Menu Links -->
@@ -91,10 +89,16 @@
           <a href="/" class="hover:text-blue-400">Home</a>
           <a href="{% url 'categories' %}" class="hover:text-blue-400">Category</a>
           <a href="{% url 'dashboard' %}" class="hover:text-blue-400">Dashboard</a>
-          <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit" class="hover:text-blue-400">Logout</button>
-          </form>
+
+          {% if user.is_authenticated %}
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="hover:text-blue-400">Logout</button>
+            </form>
+          {% else %}
+            <a href="{% url 'login' %}" class="hover:text-blue-400">Login</a>
+            <a href="{% url 'register' %}" class="hover:text-blue-400">Register</a>
+          {% endif %}
         </div>
 
         <!-- Social Icons -->
@@ -124,11 +128,15 @@
     <a href="{% url 'categories' %}" class="block hover:text-blue-400">Category</a>
     <a href="{% url 'dashboard' %}" class="block hover:text-blue-400">Dashboard</a>
 
-    <!-- Logout -->
-    <form method="post" action="{% url 'logout' %}">
-      {% csrf_token %}
-      <button type="submit" class="hover:text-blue-400">Logout</button>
-    </form>
+    {% if user.is_authenticated %}
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="hover:text-blue-400">Logout</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}" class="block hover:text-blue-400">Login</a>
+      <a href="{% url 'register' %}" class="block hover:text-blue-400">Register</a>
+    {% endif %}
 
     <!-- Social Icons -->
     <div class="flex space-x-6 mt-3 justify-center">
@@ -141,7 +149,6 @@
     </div>
   </div>
 </nav>
-
 
 
 

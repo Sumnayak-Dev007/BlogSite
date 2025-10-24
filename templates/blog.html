@@ -86,7 +86,7 @@
       </form>
       {% else %}
       <p class="mt-4 text-gray-400">
-        You must <a href="/" class="text-indigo-400 hover:underline">login</a> to comment.
+        You must <a href="{% url 'login' %}" class="text-indigo-400 hover:underline">login</a> to comment.
       </p>
       {% endif %}
     </div>
