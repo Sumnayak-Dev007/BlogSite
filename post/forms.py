@@ -1,6 +1,8 @@
 from django import forms
 from .models import Catblog, Comment
 from django.utils.text import slugify
+from django.core.exceptions import ValidationError
+
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -44,11 +46,14 @@ class PostForm(forms.ModelForm):
 
         }
 
-        def clean_slug(self):
-            slug = self.cleaned_data.get('slug')
-            if slug:
-                return slugify(slug)  # automatically converts spaces, special chars, lowercase
-            return slug
+    def clean_slug(self):
+        slug = self.cleaned_data.get('slug')
+        if slug:
+            slug = slugify(slug)  # convert to lowercase, replace spaces with dashes
+            # Check if the slug already exists in the database
+            if Catblog.objects.filter(slug=slug).exists():
+                raise ValidationError("This slug already exists. Please choose a unique slug.")
+        return slug
 
 
 class CommentForm(forms.ModelForm):

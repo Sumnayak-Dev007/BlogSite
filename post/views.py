@@ -10,12 +10,13 @@ from django.db.models import Q
 def index(request):
     query = request.GET.get("q")  # search query
     cat = Catblog.objects.all()
+    show_form = False  # flag to control accordion visibility
 
     if query:
         cat = cat.filter(
             Q(meta_keywords__icontains=query) |
             Q(slug__icontains=query) |
-            Q(title__icontains=query)  # optional if you want to include title
+            Q(title__icontains=query)
         )
 
     if request.method == "POST":
@@ -23,21 +24,36 @@ def index(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
+
+            if not post.small_description:
+                post.small_description = post.descriptions[:150]
+
+            if not post.meta_title:
+                post.meta_title = post.title
+
+            if not post.meta_keywords:
+                keywords = post.title + ", " + ", ".join(post.descriptions.split()[:10])
+                post.meta_keywords = keywords
+
+            if not post.tag:
+                post.tag = post.category.name
+
             post.save()
             form.save_m2m()
             messages.success(request, "Post created successfully!")
             return redirect("/")
         else:
             messages.error(request, "Please correct the errors below.")
+            show_form = True  # keep accordion open if form has errors
     else:
         form = PostForm()
 
     context = {
         "cat": cat,
-        "form": form
+        "form": form,
+        "show_form": show_form
     }
     return render(request, 'index.html', context)
-
 
 def categories(request):
     categories = Category.objects.filter(status = 0)

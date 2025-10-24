@@ -52,67 +52,100 @@
     </div>
 
    
+<nav class="bg-gray-900 text-white py-2 ">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+    <div class="flex items-center justify-between h-16 w-full">
 
-<nav class="bg-gray-900 text-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      
-      <!-- Brand -->
-      <a href="/" class="flex items-center space-x-2">
-        <img src="{% static 'img/brain.svg' %}" alt="Logo" class="w-10 h-10">
-        <span class="font-semibold text-lg"></span>
-      </a>
+      <!-- Left section (Logo + Mobile Search) -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <!-- Brand -->
+        <a href="/" class="flex items-center ">
+          <img src="{% static 'img/brain.svg' %}" alt="Logo" class="w-10 h-10">
+          
+        </a>
+
+        <!-- Mobile search bar -->
+        <form class="flex items-center justify-center   sm:hidden" action="{% url 'home' %}">
+          <input type="search" name="q" placeholder="Search"
+                 value="{{ request.GET.q }}"
+                 class="w-[150px] px-3 py-1.5 ml-2 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500">
+          <button class="ml-2 px-3 py-1.5 bg-blue-500 rounded-lg hover:bg-blue-600">Go</button>
+        </form>
+      </div>
 
       <!-- Mobile menu button -->
-      <button id="mobileMenuBtn" class="sm:hidden focus:outline-none">
+      <button id="mobileMenuBtn" class="sm:hidden focus:outline-none ml-2">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
 
-      <!-- Desktop Menu -->
-      <div class="hidden sm:flex sm:items-center sm:space-x-6">
-        <a href="/" class="hover:text-blue-400">Home</a>
-        <a href="{% url 'categories' %}" class="hover:text-blue-400">Category</a>
-        <a href="{% url 'dashboard' %}" class="hover:text-blue-400">Dashboard</a>
+      <!-- Desktop layout -->
+      <div class="hidden sm:flex flex-1 items-center justify-between">
+        <!-- Logo placeholder (kept empty to maintain spacing with flex-1) -->
+        <div></div>
 
-        <form method="post" action="{% url 'logout' %}">
-          {% csrf_token %}
-          <button type="submit" class="hover:text-blue-400">Logout</button>
+        <!-- Menu Links -->
+        <div class="flex items-center space-x-6">
+          <a href="/" class="hover:text-blue-400">Home</a>
+          <a href="{% url 'categories' %}" class="hover:text-blue-400">Category</a>
+          <a href="{% url 'dashboard' %}" class="hover:text-blue-400">Dashboard</a>
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="hover:text-blue-400">Logout</button>
+          </form>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="flex items-center space-x-4">
+          <a href="https://x.com/Sumanayak__" target="_blank" class="hover:text-gray-400 transition">
+            <i class="fab fa-x-twitter text-xl"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/sumanknayak/" target="_blank" class="hover:text-blue-400 transition">
+            <i class="fab fa-linkedin text-xl"></i>
+          </a>
+        </div>
+
+        <!-- Desktop Search -->
+        <form class="flex items-center space-x-2 ml-4">
+          <input type="search" name="q" placeholder="Search"
+                 value="{{ request.GET.q }}"
+                 class="px-3 py-1 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500">
+          <button class="px-4 py-1 bg-blue-500 rounded-lg hover:bg-blue-600">Search</button>
         </form>
       </div>
-
-      <!-- Search (desktop only) -->
-      <form class="hidden sm:flex items-center space-x-2" action="{% url 'home' %}">
-        <input type="search" name="q" placeholder="Search"
-                value="{{ request.GET.q }}"
-               class="px-3 py-1 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500">
-        <button class="px-4 py-1 bg-blue-500 rounded-lg hover:bg-blue-600">Search</button>
-      </form>
     </div>
   </div>
 
-  <!-- Mobile Menu (hidden by default) -->
+  <!-- Mobile Menu -->
   <div id="mobileMenu" class="sm:hidden hidden px-4 pb-4 space-y-3">
     <a href="/" class="block hover:text-blue-400">Home</a>
     <a href="{% url 'categories' %}" class="block hover:text-blue-400">Category</a>
     <a href="{% url 'dashboard' %}" class="block hover:text-blue-400">Dashboard</a>
 
-    <!-- Mobile Logout -->
+    <!-- Logout -->
     <form method="post" action="{% url 'logout' %}">
       {% csrf_token %}
       <button type="submit" class="hover:text-blue-400">Logout</button>
     </form>
 
-    <!-- Mobile Search -->
-    <form class="flex items-center space-x-2">
-      <input type="search" placeholder="Search"
-             class="px-3 py-1 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500 w-full">
-      <button class="px-4 py-1 bg-blue-500 rounded-lg hover:bg-blue-600">Search</button>
-    </form>
+    <!-- Social Icons -->
+    <div class="flex space-x-6 mt-3 justify-center">
+      <a href="https://x.com/Sumanayak__" target="_blank" class="hover:text-gray-400 transition">
+        <i class="fab fa-x-twitter text-xl"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/sumanknayak/" target="_blank" class="hover:text-blue-400 transition">
+        <i class="fab fa-linkedin text-xl"></i>
+      </a>
+    </div>
   </div>
 </nav>
+
+
+
+
+
 
 
 
@@ -148,35 +181,38 @@
   <!-- Footer -->
   <footer class="bg-gray-900 text-gray-300 py-8 mt-auto">
     <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-center md:justify-start md:space-x-12 mb-6">
+      <div class="flex flex-col md:flex-row justify-center md:justify-center items-center md:space-x-12 mb-6">
         <!-- Social Links -->
-        <div class="flex space-x-6">
-          <a href="/" class="flex items-center space-x-2 hover:text-pink-500 transition">
-            <i class="fab fa-instagram"></i><span class="hidden sm:inline">Instagram</span>
+        <div class="flex space-x-6 justify-center items-center">
+          <a href="https://www.linkedin.com/in/sumanknayak/" class="flex items-center space-x-2 hover:text-blue-500 transition">
+            <i class="fab fa-linkedin"></i><span class="hidden sm:inline">Linkedin</span>
           </a>
-          <a href="/" class="flex items-center space-x-2 hover:text-red-500 transition">
+          <!-- <a href="/" class="flex items-center space-x-2 hover:text-red-500 transition">
             <i class="fab fa-pinterest"></i><span class="hidden sm:inline">Pinterest</span>
-          </a>
-          <a href="/" class="flex items-center space-x-2 hover:text-blue-600 transition">
+          </a> -->
+          <!-- <a href="/" class="flex items-center space-x-2 hover:text-blue-600 transition">
             <i class="fab fa-facebook"></i><span class="hidden sm:inline">Facebook</span>
-          </a>
-          <a href="https://x.com/SumanNayak__" class="flex items-center space-x-2 hover:text-gray-400 transition">
+          </a> -->
+          <a href="https://x.com/Sumanayak__" class="flex items-center space-x-2 hover:text-gray-400 transition">
             <i class="fab fa-x-twitter"></i><span class="hidden sm:inline">Twitter</span>
           </a>
-          <a href="/" class="flex items-center space-x-2 hover:text-red-600 transition">
+          <!-- <a href="/" class="flex items-center space-x-2 hover:text-red-600 transition">
             <i class="fab fa-youtube"></i><span class="hidden sm:inline">Youtube</span>
-          </a>
+          </a> -->
+         
         </div>
+        
       </div>
+       <hr class="text-gray-200 mb-2"/>
+      
 
       <!-- Copyright -->
-      <div class="text-center text-gray-400 text-sm">
-        © <script>document.write(new Date().getFullYear());</script> All rights reserved ||
-        This website is made with 
-        <i class="fa-solid fa-heart text-red-500"></i> 
-        by 
-        <a href="https://x.com/SumanNayak__" target="_blank" class="hover:text-blue-400 font-semibold">
-          SumanNayak
+      <div class="text-center text-gray-400 text-sm font-semibold">
+        © <script>document.write(new Date().getFullYear());</script>
+        
+        
+        <a href="https://x.com/Sumanayak__" target="_blank" class="hover:text-blue-400 font-semibold">
+          SumanNayak. All rights reserved.
         </a>
       </div>
     </div>
