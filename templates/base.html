@@ -11,7 +11,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
-
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
     <!-- Css Styles -->
     
     
@@ -74,7 +74,7 @@
 
       <!-- Mobile menu button -->
       <button id="mobileMenuBtn" class="sm:hidden focus:outline-none ml-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
@@ -252,6 +252,34 @@
     document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
   });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+  hljs.highlightAll();
+
+  // Optional: add copy button to code blocks
+  document.querySelectorAll('pre code').forEach((block) => {
+    const button = document.createElement('button');
+    button.innerText = 'Copy';
+    button.className = 'copy-btn text-xs bg-gray-700 text-white px-2 py-1 rounded absolute top-2 right-2';
+    block.parentNode.style.position = 'relative';
+    block.parentNode.appendChild(button);
+
+    button.addEventListener('click', () => {
+      navigator.clipboard.writeText(block.innerText);
+      button.innerText = 'Copied!';
+      setTimeout(() => button.innerText = 'Copy', 1500);
+    });
+  });
+</script>
+<style>
+  .copy-btn {
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .copy-btn:hover {
+    opacity: 1;
+  }
+</style>
     {% block extra_js %}{% endblock %}
 </body>
 </html>

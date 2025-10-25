@@ -36,7 +36,7 @@
             {{ c.category.name }}
           </div>
           <h3 class="text-xl font-bold mb-2 text-white">{{ c.title }}</h3>
-          <p class="text-gray-300">{{ c.descriptions|truncatewords:25 }}</p>
+          <p class="text-gray-300">{{ c.descriptions|truncatewords:25|safe }}</p>
 
           <div class="text-gray-400 mt-3 flex items-center space-x-4 text-sm">
             <i class="fas fa-calendar-alt"></i>
@@ -90,19 +90,27 @@
         {% endif %}
 
         {% for field in form %}
-          <div class="mb-4">
-            {{ field.label_tag }}
-            {{ field }}
-            {% if field.errors %}
-              <p class="text-red-500 text-sm mt-1">{{ field.errors|striptags }}</p>
-            {% endif %}
-          </div>
-        {% endfor %}
+  <div class="mb-4">
+    {% if field.name == "descriptions" %}
+      <label for="{{ field.id_for_label }}" class="block mb-1 text-gray-200 font-medium">
+        {{ field.label }}
+      </label>
+    {% else %}
+      {{ field.label_tag }}
+    {% endif %}
+    
+    {{ field }}
+    
+    {% if field.errors %}
+      <p class="text-red-500 text-sm mt-1">{{ field.errors|striptags }}</p>
+    {% endif %}
+  </div>
+{% endfor %}
 
-        <button type="submit" 
-                class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
-          Submit
-        </button>
+<button type="submit" 
+        class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+  Submit
+</button>
       </form>
     </div>
   </div>

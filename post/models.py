@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime,os
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 
@@ -37,7 +38,7 @@ class Catblog(models.Model):
     title=models.CharField(max_length=150,null=False,blank=False)
     blog_image=models.ImageField(upload_to=get_image_path,null=True,blank=True)
     small_description=models.CharField(max_length= 250,null=False,blank=False)
-    descriptions=models.TextField(max_length= 10000,null=False,blank=False)
+    descriptions=RichTextUploadingField(max_length=10000, null=False, blank=False)
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     status=models.BooleanField(default=False,help_text="0=default,1=Trending")
     trending=models.BooleanField(default=False,help_text="0=default,1=Trending")
