@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
-    
+    # Google provider
+    'allauth.socialaccount.providers.google',
 
     'post',
     'users',
@@ -56,10 +57,9 @@ INSTALLED_APPS = [
     "crispy_tailwind",
     'ckeditor',
     'ckeditor_uploader',
-    'markdown_deux',
+    
 
-    # Google provider
-    'allauth.socialaccount.providers.google',
+    
 ]
 
 SITE_ID = 2
