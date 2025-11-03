@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 import os,datetime
 from django.core.validators import FileExtensionValidator
+import random
+from cloudinary_storage.storage import MediaCloudinaryStorage
 
 # Create your models here.
 
@@ -16,7 +18,7 @@ def get_pic_path(request,filename):
 
 class Profile(models.Model):
     author = models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile")
-    pic = models.ImageField(default='default.png',upload_to=get_pic_path,validators=[FileExtensionValidator(['png','jpg','jpeg','webp'])])
+    pic = models.ImageField(storage=MediaCloudinaryStorage(), default='default.png',upload_to=get_pic_path,validators=[FileExtensionValidator(['png','jpg','jpeg','webp'])])
     bio = models.TextField(blank=True,null=True)
 
     def __str__(self):
